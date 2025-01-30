@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/cart/cart.dart';
 import 'started/get_started.dart';
 import 'home/home.dart';
 
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => GetStarted(),
         '/home': (context) => Home(),
+        '/orders': (context) => EmptyOrdersScreen(),
       },
     );
   }

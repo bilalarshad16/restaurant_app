@@ -25,7 +25,8 @@ class Home extends StatelessWidget {
                 icon:
                     Icon(Icons.shopping_cart, color: Colors.black, size: 30.0),
                 onPressed: () {
-                  // Add functionality here
+                  Navigator.pushNamed(
+                      context, '/orders'); // Assuming you will define routes
                 },
               ),
             ),
