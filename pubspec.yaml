@@ -56,6 +56,7 @@ flutter:
     - assets/shopping-cart.png
     - assets/Vector.png
     - assets/Group 66.png
+    - assets/veggie.jpg
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
