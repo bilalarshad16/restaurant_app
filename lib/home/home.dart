@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/products/productDetails.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -104,6 +105,11 @@ class Home extends StatelessWidget {
           backgroundColor: Colors.orange[900],
           fixedColor: Colors.white,
           type: BottomNavigationBarType.fixed,
+          onTap: (index) {
+            if (index == 1) {
+              Navigator.pushNamed(context, '/favorites');
+            }
+          },
           items: const [
             BottomNavigationBarItem(
                 icon: Icon(Icons.home, size: 30.0), label: 'Home'),
@@ -131,8 +137,8 @@ class MenuList extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 16.0),
           child: MenuCard(
             title: 'Veggie Tomato Mix',
-            price: 'N1,900',
-            imagePath: 'assets/veggie.jpg', // Local asset image
+            price: 'Rs. 650',
+            imagePath: 'assets/food2.jpeg', // Local asset image
           ),
         );
       },
@@ -143,45 +149,62 @@ class MenuList extends StatelessWidget {
 class MenuCard extends StatelessWidget {
   final String title;
   final String price;
-  final String imagePath; // Changed from imageUrl
+  final String imagePath;
 
   const MenuCard(
       {required this.title, required this.price, required this.imagePath});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      elevation: 4,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  price,
-                  style: const TextStyle(fontSize: 16, color: Colors.orange),
-                ),
-              ],
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetailPage(
+              title: title,
+              price: price,
+              imagePath: imagePath,
             ),
           ),
-          ClipRRect(
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(16),
-              bottomRight: Radius.circular(16),
+        );
+      },
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        elevation: 4,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    price,
+                    style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.orange,
+                        fontWeight: FontWeight.w800),
+                  ),
+                ],
+              ),
             ),
-            child: Image.asset(imagePath,
-                fit: BoxFit.cover, height: 150, width: double.infinity),
-          ),
-        ],
+            ClipRRect(
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(16),
+                bottomRight: Radius.circular(16),
+              ),
+              child: Image.asset(imagePath,
+                  fit: BoxFit.cover, height: 250, width: double.infinity),
+            ),
+          ],
+        ),
       ),
     );
   }
